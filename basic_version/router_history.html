@@ -23,7 +23,7 @@
 
     <script>
         let view = null;
-
+        // 页面加载完不会触发hashchange事件，这里主动触发一次hashchange事件，该事件快于onload事件，所以要在这里触发
         window.addEventListener('DOMContentLoaded', function () {
             view = document.querySelector('#view');
             document.querySelectorAll('a[href]').forEach(e => {

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义实现Hash路由模块</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <a href="#/a">aaaaaaaaaaa</a>
+        </li>
+        <li>
+            <a href="#/b">bbbbbbbbbbb</a>
+        </li>
+        <li>
+            <a href="#/c">ccccccccccc</a>
+        </li>
+    </ul>
+    <div id="view"></div>
+
+    <script>
+        let view = document.querySelector('#view');
+
+        window.addEventListener('load', viewChange);
+
+        window.addEventListener('hashchange', viewChange);
+
+        function viewChange() {
+            let hash = location.hash;
+            switch (hash) {
+                case '#/b':
+                    view.innerHTML = 'bbbbbb';
+                    break;
+                case '#/c':
+                    view.innerHTML = 'cccccc';
+                    break;
+                default:
+                    view.innerHTML = 'aaaaaa';
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

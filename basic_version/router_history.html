@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义实现history路由模块</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <a href="/a">aaaaaaaaaaa</a>
+        </li>
+        <li>
+            <a href="/b">bbbbbbbbbbb</a>
+        </li>
+        <li>
+            <a href="/c">ccccccccccc</a>
+        </li>
+    </ul>
+    <div id="view"></div>
+
+    <script>
+        let view = null;
+
+        window.addEventListener('DOMContentLoaded', function () {
+            view = document.querySelector('#view');
+            document.querySelectorAll('a[href]').forEach(e => {
+                e.addEventListener('click', function (_e) {
+                    _e.preventDefault();
+                    let tempUrl =
+                        '?page=' + e.getAttribute('href');
+                    // let tempUrl = e.getAttribute('href');
+                    history.pushState({
+                        'page_id': 1,
+                        'user_id': 5
+                    }, '', tempUrl);
+                    viewChange();
+                })
+            })
+            viewChange();
+        });
+
+        window.addEventListener('popstate', viewChange);
+
+        function viewChange() {
+            let pathname = location.pathname;
+            switch (pathname) {
+                case '/b':
+                    view.innerHTML = 'bbbbbb';
+                    break;
+                case '/c':
+                    view.innerHTML = 'cccccc';
+                    break;
+                default:
+                    view.innerHTML = 'aaaaaa';
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
